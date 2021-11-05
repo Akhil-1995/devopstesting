@@ -12,10 +12,10 @@ pipeline {
 	//	vm_creds = credentials('vagrant')
 	//}
 	
-	//tools {
-    	  // maven '3.6.3'
-	  // jdk '1.8'
-	//}
+	tools {
+    	   maven '3.6.3'
+	   jdk '1.8'
+	}
 	stages {
 		stage('Build') {
 			steps {
@@ -50,28 +50,28 @@ pipeline {
 			}
 		}//end of Sonar Quality gate
 		
-		stage('Push Package') {
-			steps {
-				sh 'mvn deploy -s settings.xml'
-			}
-		}//end push packages
+		//stage('Push Package') {
+			//steps {
+				//sh 'mvn deploy -s settings.xml'
+			//}
+		//}//end push packages
 		
-		stage('Docker Build') {
-	    steps {
-		withDockerRegistry([ credentialsId: "Artifactirytraining", url: "https://trainingdevopscicd.jfrog.io/" ]) {
-		sh 'docker build -t "devops:${BUILD_NUMBER}" .'
-		sh 'docker tag "devops:${BUILD_NUMBER}" trainingdevopscicd.jfrog.io/default-docker-local/"devops:${BUILD_NUMBER}"'
-		}
-	    }
-	}//end of Docker Build
+		//stage('Docker Build') {
+	    //steps {
+		//withDockerRegistry([ credentialsId: "Artifactirytraining", url: "https://trainingdevopscicd.jfrog.io/" ]) {
+		//sh 'docker build -t "devops:${BUILD_NUMBER}" .'
+		//sh 'docker tag "devops:${BUILD_NUMBER}" trainingdevopscicd.jfrog.io/default-docker-local/"devops:${BUILD_NUMBER}"'
+		//}
+	    //}
+	//}//end of Docker Build
 	    
-	stage('Docker Push') {
-	    steps {
-		withDockerRegistry([ credentialsId: "Artifactirytraining", url: "https://trainingdevopscicd.jfrog.io/" ]) {
-		sh 'docker push trainingdevopscicd.jfrog.io/default-docker-local/"devops:${BUILD_NUMBER}"'
-		}
-	     }
-	}//end of Docker Push	
+	//stage('Docker Push') {
+	    //steps {
+		//withDockerRegistry([ credentialsId: "Artifactirytraining", url: "https://trainingdevopscicd.jfrog.io/" ]) {
+		//sh 'docker push trainingdevopscicd.jfrog.io/default-docker-local/"devops:${BUILD_NUMBER}"'
+		//}
+	     //}
+	//}//end of Docker Push	
 	//stage('Deploy to GKE K8s') {
 		    //steps{
 			//script {
