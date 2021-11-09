@@ -9,6 +9,11 @@
       raw: apt -y update && apt install -y python-minimal
       when: check_python.rc != 0
       
+    - name: Install Ansible
+      raw: apt-add-repository ppa:ansible/ansible && apt install ansible
+      debug:
+        msg: "Installed Ansible Successfully"
+      
     - name: downloading the binary from artifactory
       get_url:
         url: https://myjfrogpuppy.jfrog.io/artifactory/default-maven-virtual/org/springframework/boot/spring-rest-hello-world/1.0/spring-rest-hello-world-1.0.jar
