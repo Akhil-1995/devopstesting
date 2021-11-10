@@ -22,6 +22,4 @@
         url_password: Myself@1995
 
     - name: run the jar
-      shell: nohup java -jar /tmp/spring-rest-hello-world-1.0.jar 2>/dev/null &
-      debug:
-        msg: "Application is running"
+        shell: nohup java -jar /tmp/spring-rest-hello-world-1.0.jar 2>/dev/null &      
