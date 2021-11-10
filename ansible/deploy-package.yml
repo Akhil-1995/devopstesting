@@ -5,14 +5,14 @@
     - name: ping
       action: ping
       
-    - name: Install Python
-      raw: apt -y update && apt install -y python-minimal
-      when: check_python.rc != 0
+    #- name: Install Python
+      #raw: apt -y update && apt install -y python-minimal
+      #when: check_python.rc != 0
       
-    - name: Install Ansible
-      raw: apt-add-repository ppa:ansible/ansible && apt install ansible
-      debug:
-        msg: "Installed Ansible Successfully"
+    #- name: Install Ansible
+      #raw: apt-add-repository ppa:ansible/ansible && apt install ansible
+      #debug:
+        #msg: "Installed Ansible Successfully"
       
     - name: downloading the binary from artifactory
       get_url:
@@ -23,3 +23,5 @@
 
     - name: run the jar
       shell: nohup java -jar /tmp/spring-rest-hello-world-1.0.jar 2>/dev/null &
+      debug:
+        msg: "Application is running"
